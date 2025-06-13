@@ -36,6 +36,9 @@ function Navbar(){
         <li className="nav-item">
           <a className="nav-link" href="#"><i className="bi bi-bag"></i></a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#"><i className="bi bi-search"></i></a>
+        </li>
        
       
       </ul>

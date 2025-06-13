@@ -13,7 +13,7 @@ function ProductCard(props) {
       <div className="card-body">
         <h5 className="card-title">{ props.product.title }</h5>
         <p className="card-text">Price.{props.product.price}</p>
-        <a href="#" className="btn btn-primary" onClick={ popup }>Go somewhere</a>
+        <a href="#" className="btn btn-primary" onClick={ popup }>Buy Now</a>
         {
           showdiv ? <div className='small-box'>
             <h1>you have payment</h1>

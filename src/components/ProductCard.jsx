@@ -17,7 +17,7 @@ function ProductCard(props) {
         
         {
           showdiv ? <div className='small-box'>
-            <h1>you have payment</h1>
+            <h1>Do you have payment</h1>
           </div> : ""
         }
          <Rating readonly = {true} allowFraction = {true} initialValue={props.product.rating.rate}/>

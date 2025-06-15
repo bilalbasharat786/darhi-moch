@@ -21,7 +21,7 @@ function ProductCard(props) {
           </div> : ""
         }
          <Rating readonly = {true} allowFraction = {true} initialValue={props.product.rating.rate}/>
-
+                                    
       </div>
     </div>
 

@@ -36,7 +36,7 @@ function Navbar(){
           <Link className="nav-link" to="/cart"><i className="bi bi-bag"></i></Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="#"><i className="bi bi-search"></i></Link>
+          <Link className="nav-link" to=""><i className="bi bi-search"></i></Link>
         </li>
 
 

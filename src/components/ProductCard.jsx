@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import cardImg from '../assets/grocey-image.jpg'
 import { Rating } from 'react-simple-star-rating'
 import { Link } from 'react-router';
+import { CountContext } from '../App';
+import { useContext } from 'react';
 
 
 function ProductCard(props) {
+
+  const { count, setCount } = useContext(CountContext);
+
   function slugify(text) {
   return text
     .toString()
@@ -18,23 +23,22 @@ function ProductCard(props) {
   const popup = () => {
     setshowdiv(!showdiv);
   }
+
+const handleClick = () => {
+  setCount(count + 1);
+}
+
   return (
     <>
   <div className="col-lg-4">
       <div className="card " >
       <img src={props.product.image} className="card-img-top" alt="..." />
       <div className="card-body">
-        <a href="#" className="btn btn-primary" onClick={ popup }>Add To Card</a>
+        <a href="#" className="btn btn-primary" onClick={handleClick}>Add To Card - {count}</a>
         <Link to={`/product/${slugify(props.product.title)}`} style={{ textDecoration: 'none', color: 'black' }}>
         <h5 className="card-title">{ props.product.title }</h5>
         </Link>
         <p className="card-text">Price.{props.product.price}</p>
-        
-        {
-          showdiv ? <div className='small-box'>
-            <h1>Do you have payment</h1>
-          </div> : ""
-        }
          <Rating readonly = {true} allowFraction = {true} initialValue={props.product.rating.rate}/>
                                     
       </div>

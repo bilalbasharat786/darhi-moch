@@ -19,15 +19,17 @@ export default function App() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  }, []);
+    const cartFormStorage = JSON.parse(localStorage.getItem('cart'))
+    
+      setCart(cartFormStorage || []);
+    
+  }, [])
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+ useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }, [ cart ]);
 
   return (
     <>

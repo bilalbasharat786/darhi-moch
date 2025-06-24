@@ -3,12 +3,23 @@ import { CartContext } from '../App';
 import { useContext } from 'react';
 
 function Cart() {
-    const { cart, } = useContext(CartContext);
+    const { cart, setCart} = useContext(CartContext);
+    const handleClearCart = () => {
+        setCart([]);
+        
+    }
+
+const  handleDelete = (id) => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+}
+
     return (
         <>
             <div className="container">
                
-                <table class="table">
+                <table className="table">
   <thead>
     <tr>
       <th scope="col">image</th>
@@ -26,7 +37,7 @@ function Cart() {
                     <td>{item.title}</td>
                     <td>${item.price}</td>
                     <td>
-                        <button className="btn btn-danger" onClick={() => console.log('Remove item')}>Remove</button>
+                        <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Remove</button>
                     </td>
                 </tr>
             )
@@ -34,6 +45,7 @@ function Cart() {
     }
     </tbody>
 </table>
+<button className="btn btn-danger" onClick={handleClearCart}>Clear Cart</button>
             </div>
         </>
     )

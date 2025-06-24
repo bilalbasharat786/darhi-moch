@@ -10,13 +10,25 @@ import Cart from "./pages/cart";
 import Profile from "./pages/profile";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { createContext } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export default function App() {
 
   const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <>
       <CartContext.Provider value={{cart, setCart }}>

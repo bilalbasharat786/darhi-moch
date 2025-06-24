@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
-import cardImg from '../assets/grocey-image.jpg'
+
 import { Rating } from 'react-simple-star-rating'
 import { Link } from 'react-router';
-import { CountContext } from '../App';
+import { CartContext } from '../App';
 import { useContext } from 'react';
-
 
 function ProductCard(props) {
 
-  const { count, setCount } = useContext(CountContext);
+  const { cart, setCart } = useContext(CartContext);
 
   function slugify(text) {
   return text
@@ -19,13 +17,16 @@ function ProductCard(props) {
     .replace(/^-+|-+$/g, '');    // starting ya ending '-' ko hatao
 }
 
-  const [showdiv, setshowdiv] = useState(false)
-  const popup = () => {
-    setshowdiv(!showdiv);
-  }
+  
 
-const handleClick = () => {
-  setCount(count + 1);
+const handleClick = (p) => {
+ 
+const foundItem = cart.find((item) => item.id === p.id)
+if (!foundItem) {
+  // If the item is already in the cart, you can choose to update its quantity or do nothing
+ setCart([...cart, p])
+}
+
 }
 
   return (
@@ -34,7 +35,7 @@ const handleClick = () => {
       <div className="card " >
       <img src={props.product.image} className="card-img-top" alt="..." />
       <div className="card-body">
-        <a href="#" className="btn btn-primary" onClick={handleClick}>Add To Card - {count}</a>
+        <button href="#" className="btn btn-primary" onClick={()=>handleClick(props.product)}>Add To Card - </button>
         <Link to={`/product/${slugify(props.product.title)}`} style={{ textDecoration: 'none', color: 'black' }}>
         <h5 className="card-title">{ props.product.title }</h5>
         </Link>

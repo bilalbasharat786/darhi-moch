@@ -12,13 +12,14 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import { createContext } from 'react';
 import { useState } from 'react';
 
-export const CountContext = createContext();
+export const CartContext = createContext();
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+
+  const [cart, setCart] = useState([]);
   return (
     <>
-      <CountContext.Provider value={{ count, setCount }}>
+      <CartContext.Provider value={{cart, setCart }}>
         <BrowserRouter>
         <Navbar />
         <Routes>
@@ -31,8 +32,7 @@ function App() {
           {/* You can add more routes here as needed */}
         </Routes>
       </BrowserRouter>
-    </CountContext.Provider>
+    </CartContext.Provider>
     </>
   )
 }
-export default App;

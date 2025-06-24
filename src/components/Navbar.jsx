@@ -1,13 +1,13 @@
-
- import React, {useState} from 'react'
+import React from 'react';
 import { Link } from 'react-router';
-import { CountContext } from '../App';
-import { useContext } from 'react';
+import { useState } from 'react';
+ import { CartContext } from '../App';
+ import { useContext } from 'react';
+
+
 function Navbar(){
 
-
-  const { count, setCount } = useContext(CountContext);
-
+   const { cart ,} = useContext(CartContext);
    const [showMenu,setshowMenu] = useState (false)
     const handleToggle = () =>{
       setshowMenu(!showMenu);
@@ -39,7 +39,7 @@ function Navbar(){
           <Link className="nav-link " to="/profile"><i className="bi bi-person"></i></Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/cart"><i className="bi bi-bag">{count}</i></Link>
+          <Link className="nav-link" to="/cart"><i className="bi bi-bag">{cart.length}</i></Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to=""><i className="bi bi-search"></i></Link>

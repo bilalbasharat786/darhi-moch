@@ -21,7 +21,7 @@ function ProductCard(props) {
 
 const handleClick = (p) => {
  
-const foundItem = cart.find((item) => item.id === p.id)
+const foundItem = cart.find((item) => item.id == p.id)
 if (!foundItem) {
   // If the item is already in the cart, you can choose to update its quantity or do nothing
  setCart([...cart, p])
@@ -35,7 +35,7 @@ if (!foundItem) {
       <div className="card " >
       <img src={props.product.image} className="card-img-top" alt="..." />
       <div className="card-body">
-        <button href="#" className="btn btn-primary" onClick={()=>handleClick(props.product)}>Add To Card - </button>
+        <button href="#" className="btn btn-primary" disabled={cart.find((item) => item.id == props.product.id)? true : false} onClick={()=>handleClick(props.product)}>{cart.find((item) => item.id == props.product.id)? "Already In Cart - " : "Add To Cart"}</button>
         <Link to={`/product/${slugify(props.product.title)}`} style={{ textDecoration: 'none', color: 'black' }}>
         <h5 className="card-title">{ props.product.title }</h5>
         </Link>

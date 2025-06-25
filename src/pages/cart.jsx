@@ -6,7 +6,7 @@ function Cart() {
     const { cart, setCart} = useContext(CartContext);
     const handleClearCart = () => {
         setCart([]);
-        
+        localStorage.setItem('cart', JSON.stringify([]));
     }
 
 const  handleDelete = (id) => {

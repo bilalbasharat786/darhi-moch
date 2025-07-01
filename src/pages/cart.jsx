@@ -39,9 +39,9 @@ const  handleDelete = (id) => {
                     <td>${item.price}</td>
                     <td>
                       <div>
-                        <button btn btn-dark>-</button>
+                        <button className='btn btn-dark'>-</button>
                         <input type="text" className='form-control' name="" id="" />
-                        <button>+</button>
+                        <button className='btn btn-dark'>+</button>
                       </div>
                         </td>
                     <td>

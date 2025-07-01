@@ -25,6 +25,7 @@ const  handleDelete = (id) => {
       <th scope="col">image</th>
       <th scope="col">title</th>
       <th scope="col">Price</th>
+      <th scope="col">Qty</th>
       <th scope="col">Handle</th>
     </tr>
   </thead>
@@ -36,6 +37,13 @@ const  handleDelete = (id) => {
                     <td><img src={item.image} alt={item.title} style={{ width: '50px' }} /></td>
                     <td>{item.title}</td>
                     <td>${item.price}</td>
+                    <td>
+                      <div>
+                        <button btn btn-dark>-</button>
+                        <input type="text" className='form-control' name="" id="" />
+                        <button>+</button>
+                      </div>
+                        </td>
                     <td>
                         <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Remove</button>
                     </td>

@@ -35,6 +35,9 @@ const handleQtyIncrease = (item) => {
         return <div>Cart is empty</div>
     
         }
+    // Calculate grand total before returning JSX
+    const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
     return (
         <>
             <div className="container">
@@ -65,9 +68,11 @@ const handleQtyIncrease = (item) => {
                         <button className='btn btn-dark' onClick={()=>handleQtyIncrease(item)}>+</button>
                       </div>
                         </td>
-                        <td>
-                        ${item.price * 1}
-                        </td>
+                        
+                          <td>
+                            ${(item.price * item.qty).toFixed(2)}
+                            </td>
+                        
                     <td>
                         <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Remove</button>
                     </td>
@@ -77,7 +82,11 @@ const handleQtyIncrease = (item) => {
     }
     </tbody>
 </table>
-<button className="btn btn-danger" onClick={handleClearCart}>Clear Cart</button>
+<div className="d-flex align-items-center mt-3">
+  
+  <h5 className="mb-0">Grand Total: <span style={{color: 'green'}}>${grandTotal.toFixed(2)}</span></h5>
+  <button className="btn btn-danger me-3" onClick={handleClearCart}>Clear Cart</button>
+</div>
             </div>
         </>
     )

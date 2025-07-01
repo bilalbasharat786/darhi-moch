@@ -26,6 +26,7 @@ const  handleDelete = (id) => {
       <th scope="col">title</th>
       <th scope="col">Price</th>
       <th scope="col">Qty</th>
+      <th scope="col">Total</th>
       <th scope="col">Handle</th>
     </tr>
   </thead>
@@ -38,11 +39,14 @@ const  handleDelete = (id) => {
                     <td>{item.title}</td>
                     <td>${item.price}</td>
                     <td>
-                      <div>
+                      <div className='d-flex'>
                         <button className='btn btn-dark'>-</button>
-                        <input type="text" className='form-control' name="" id="" />
+                        <input type="text" className='form-control' value={1} style={{width:'40px'}} name="" id="" />
                         <button className='btn btn-dark'>+</button>
                       </div>
+                        </td>
+                        <td>
+                        ${item.price * 1}
                         </td>
                     <td>
                         <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Remove</button>

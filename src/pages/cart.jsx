@@ -14,7 +14,27 @@ const  handleDelete = (id) => {
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 }
+const handleChange = () => {
 
+}
+const handleQtyIncrease = (item) => {
+    const updatedCart = cart.map(cartItem =>
+        cartItem.id === item.id ? { ...cartItem, qty: cartItem.qty + 1 } : cartItem
+    );
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+}
+        const handleQtyDecrease =(item) => {
+    const updatedCart = cart.map(cartItem =>
+        cartItem.id === item.id ? { ...cartItem, qty: Math.max(cartItem.qty - 1, 1) } : cartItem
+    );
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+}
+    if (cart.length === 0) {
+        return <div>Cart is empty</div>
+    
+        }
     return (
         <>
             <div className="container">
@@ -40,9 +60,9 @@ const  handleDelete = (id) => {
                     <td>${item.price}</td>
                     <td>
                       <div className='d-flex'>
-                        <button className='btn btn-dark'>-</button>
-                        <input type="text" className='form-control' value={1} style={{width:'40px'}} name="" id="" />
-                        <button className='btn btn-dark'>+</button>
+                        <button className='btn btn-dark' onClick={()=>handleQtyDecrease(item)}>-</button>
+                        <input type="text" className='form-control' value={item.qty} onChange={handleChange} style={{width:'40px'}} name="" id="" />
+                        <button className='btn btn-dark' onClick={()=>handleQtyIncrease(item)}>+</button>
                       </div>
                         </td>
                         <td>

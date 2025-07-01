@@ -60,7 +60,7 @@ const handleQtyIncrease = (item) => {
                 <tr key={item.id}>
                     <td><img src={item.image} alt={item.title} style={{ width: '50px' }} /></td>
                     <td>{item.title}</td>
-                    <td>${item.price}</td>
+                    <td>Rs.{item.price}</td>
                     <td>
                       <div className='d-flex'>
                         <button className='btn btn-dark' onClick={()=>handleQtyDecrease(item)}>-</button>
@@ -70,7 +70,7 @@ const handleQtyIncrease = (item) => {
                         </td>
                         
                           <td>
-                            ${(item.price * item.qty).toFixed(2)}
+                            Rs.{(item.price * item.qty).toFixed(2)}
                             </td>
                         
                     <td>
@@ -84,7 +84,7 @@ const handleQtyIncrease = (item) => {
 </table>
 <div className="d-flex align-items-center mt-3">
   <button className="btn btn-danger me-3" onClick={handleClearCart}>Clear Cart</button>
-  <h5 className="mb-0">Grand Total: <span style={{color: 'green'}}>${grandTotal.toFixed(2)}</span></h5>
+  <h5 className="mb-0">Grand Total: <span style={{color: 'green'}}>Rs.{grandTotal.toFixed(2)}</span></h5>
   
 </div>
             </div>

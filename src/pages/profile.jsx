@@ -29,7 +29,12 @@ function Profile() {
   // Login form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Logging in with email: ${user.email}`);
+    const formdata = new FormData();
+  formdata.append('fullName', signUpUser.fullName);
+  formdata.append('email', signUpUser.email);
+  formdata.append('password', signUpUser.password);
+  formdata.append('confirmPassword', signUpUser.confirmPassword);
+  formdata.append('phone', signUpUser.phone);
   };
 
   // Signup form submit

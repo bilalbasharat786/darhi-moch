@@ -35,7 +35,10 @@ function Profile() {
   formdata.append('password', signUpUser.password);
   formdata.append('confirmPassword', signUpUser.confirmPassword);
   formdata.append('phone', signUpUser.phone);
-  };
+  for (let pair of formdata.entries()) {
+      console.log(`${pair[0]}:` , pair[1]);
+    }
+  }
 
   // Signup form submit
   const handleSignUpSubmit = (e) => {

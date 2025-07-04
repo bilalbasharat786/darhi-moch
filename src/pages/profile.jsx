@@ -39,7 +39,7 @@ function Profile() {
       alert('Passwords do not match!');
       return;
     }
-    alert(`Signing up with email: ${signUpUser.email}`);
+   console.log("Form Submitted:", signUpUser);
   };
 
   // Login input change

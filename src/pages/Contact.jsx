@@ -4,9 +4,9 @@ import React from "react";
  import { useForm } from "react-hook-form";
 function Contact() {
  const ContactSchema = z.object({
-  name: z.string().max(5).min(3),
-  email: z.email(),
-  message: z.string()
+  name: z.string().max(15,"Name should be less than 15 characters").min(3,"Name should be at least 3 characters"),
+  email: z.email( "Invalid email address").min(1, "Email is required"),
+  message: z.string().max(200, "Message should be less than 200 characters").min(1, "Message is required"),
  });
 
 

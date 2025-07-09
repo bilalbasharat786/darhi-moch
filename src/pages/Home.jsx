@@ -1,21 +1,29 @@
-import React from "react"
-
-import ProductCard from '../components/ProductCard'
-import {product} from '../data'
+import React from "react";
+import { useState } from "react";
+import ProductCard from "../components/ProductCard";
 function Home() {
-    return (
-        <>
-        <div className="container">
+  const [products, setProducts] = useState([]);
+
+  // Uncomment and use this function if you plan to fetch products from the API
+  const getProductsFromAPI = async () => {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const data = await response.json();
+    setProducts(data);
+    console.log(data);
+  };
+  return (
+    <>
+      <div className="container">
+        <button onClick={getProductsFromAPI}>Get Data</button>
         <div className="row">
-          {
-            product.map((item, index) => (
-              <ProductCard key={item.id || index} product={item} />
-            ))
-          }
+          {products.map((product) => (
+            <div className="col-md-3" key={product.id}>
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
       </div>
-         </>
-
-    )
+    </>
+  );
 }
 export default Home;

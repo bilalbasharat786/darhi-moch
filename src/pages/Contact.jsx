@@ -1,8 +1,17 @@
 import React from "react";
+ import * as z from "zod/v4";
 import { useForm } from "react-hook-form";
 function Contact() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
+ const Contact = z.object({
+  name: z.string(),
+  email: z.string(),
+  message: z.string()
+ });
+ 
+ 
+ 
   const onSubmit = data => {
     console.log(data);
     
@@ -18,10 +27,11 @@ function Contact() {
                 name="name"
                 id="name"
                 required
-                {...register("name", { required: "Name is required" })}
+                {...register("name", { required: true })}
               />
+              {errors.name && <span style={{ color: "red" }}>This field is required</span>}
             </div>
-        {errors.name && <span>{errors.name.message}</span>}
+        
             <div className="col-md-12">
               <label htmlFor="inputEmail4" className="form-label">Email</label>
               <input
@@ -32,8 +42,9 @@ function Contact() {
                 required
                 {...register("email", { required: "Email is required" })}
               />
+              {errors.email && <span style={{ color: "red" }}>This field is required</span>}
             </div>
-            {errors.email && <span>{errors.email.message}</span>}
+
             <div className="col-12">
               <label htmlFor="Message" className="form-label">Message</label>
               <textarea
@@ -44,8 +55,8 @@ function Contact() {
                 style={{height:"100px"}}
                 {...register("message", { required: "Message is required" })}
               ></textarea>
-              {errors.message && <span>{errors.message.message}</span>}
-<hr style={{ color: "white" }} />
+              {errors.message && <span style={{ color: "red" }}>This field is required</span>}
+              <hr style={{ color: "white" }} />
               <button type="submit" className="btn btn-primary">Submit</button>
             </div>
           </form>

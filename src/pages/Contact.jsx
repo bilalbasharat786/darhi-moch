@@ -5,8 +5,8 @@ function Contact() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
  const Contact = z.object({
-  name: z.string(),
-  email: z.string(),
+  name: z.string().max(5).min(3),
+  email: z.email(),
   message: z.string()
  });
  

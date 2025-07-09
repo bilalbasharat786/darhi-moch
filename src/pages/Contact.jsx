@@ -1,14 +1,22 @@
 import React from "react";
  import * as z from "zod/v4";
-import { useForm } from "react-hook-form";
+ import { zodResolver } from "@hookform/resolvers/zod";
+ import { useForm } from "react-hook-form";
 function Contact() {
-
-  const { register, handleSubmit, formState: { errors } } = useForm();
- const Contact = z.object({
+ const ContactSchema = z.object({
   name: z.string().max(5).min(3),
   email: z.email(),
   message: z.string()
  });
+
+
+  const { register, handleSubmit, formState: { errors } } = useForm(
+    {
+      resolver: zodResolver(ContactSchema),
+      mode: "onBlur",
+    }
+  );
+
  
  
  
@@ -29,7 +37,8 @@ function Contact() {
                 required
                 {...register("name", { required: true })}
               />
-              {errors.name && <span style={{ color: "red" }}>This field is required</span>}
+              {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
+
             </div>
         
             <div className="col-md-12">
@@ -42,7 +51,7 @@ function Contact() {
                 required
                 {...register("email", { required: "Email is required" })}
               />
-              {errors.email && <span style={{ color: "red" }}>This field is required</span>}
+              {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
             </div>
 
             <div className="col-12">
@@ -55,7 +64,7 @@ function Contact() {
                 style={{height:"100px"}}
                 {...register("message", { required: "Message is required" })}
               ></textarea>
-              {errors.message && <span style={{ color: "red" }}>This field is required</span>}
+              {errors.message && <p style={{ color: "red" }}>{errors.message.message}</p>}
               <hr style={{ color: "white" }} />
               <button type="submit" className="btn btn-primary">Submit</button>
             </div>

@@ -10,7 +10,7 @@ function Contact() {
  });
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm(
+  const { register, handleSubmit, formState: { errors, touchedFields } } = useForm(
     {
       resolver: zodResolver(ContactSchema),
       mode: "onBlur",
@@ -37,7 +37,7 @@ function Contact() {
                 required
                 {...register("name", { required: true })}
               />
-              {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
+              {touchedFields.name && errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
 
             </div>
         
@@ -51,7 +51,7 @@ function Contact() {
                 required
                 {...register("email", { required: "Email is required" })}
               />
-              {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
+              {touchedFields.email &&errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
             </div>
 
             <div className="col-12">
@@ -64,7 +64,7 @@ function Contact() {
                 style={{height:"100px"}}
                 {...register("message", { required: "Message is required" })}
               ></textarea>
-              {errors.message && <p style={{ color: "red" }}>{errors.message.message}</p>}
+              {touchedFields.message && errors.message && <p style={{ color: "red" }}>{errors.message.message}</p>}
               <hr style={{ color: "white" }} />
               <button type="submit" className="btn btn-primary">Submit</button>
             </div>

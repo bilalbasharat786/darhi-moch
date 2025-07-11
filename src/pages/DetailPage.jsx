@@ -1,6 +1,6 @@
 import React from "react"
 import { useParams } from 'react-router';
-import { product } from "../data";
+import product from '../data/product'; // Adjust the path as needed
 
 function DetailPage() {
   const { slug } = useParams();

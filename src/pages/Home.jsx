@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 function Home() {
   const [products, setProducts] = useState([]);
@@ -11,10 +12,13 @@ function Home() {
     setProducts(data);
     console.log(data);
   };
+  useEffect(() => {
+    getProductsFromAPI();
+  }, []);
   return (
     <>
       <div className="container">
-        <button onClick={getProductsFromAPI}>Get Data</button>
+                <button onClick={getProductsFromAPI}>Get Data</button>
         <div className="row">
           {products.map((product) => (
             <div className="col-md-3" key={product.id}>

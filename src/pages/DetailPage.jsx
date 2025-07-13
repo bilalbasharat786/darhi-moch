@@ -1,11 +1,25 @@
-import React from "react"
-import { useParams } from 'react-router';
-import product from '../data/product'; // Adjust the path as needed
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+ // Adjust the path as needed
 
 function DetailPage() {
   const { slug } = useParams();
   const productDetails = product.find(item => item.slug === slug);
-
+useEffect(() => {
+    // Pehle sab products fetch karo, phir slug match karo
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(data => {
+        const found = data.find(item =>
+          item.title.toLowerCase().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '') === slug
+        );
+        setProduct(found);
+      });
+  }, [slug]);
+  const [product, setProduct] = useState(null);
+  if (!productDetails) {
+    return <div>Product not found</div>;
+  }
   return (
     <div className="container">
       <h1>{productDetails.title}</h1>

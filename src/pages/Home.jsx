@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
+// import product from '../data/product'; // Adjust the path as needed
 function Home() {
   const [products, setProducts] = useState([]);
 
@@ -17,12 +18,15 @@ function Home() {
     getProductsFromAPI();
   }, []);
 
-  const handleChange = (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredProducts = products.filter((product) => {
-      return product.title.toLowerCase().includes(searchTerm);
-    });
-    setProducts(filteredProducts);
+  const handleSearch = (e) => {
+   if(e.target.value){
+      const filteredProducts = products.filter((product) => 
+        product.title.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setProducts(filteredProducts);
+    }else {
+      getProductsFromAPI();
+   }
   };
   return (
     <>
@@ -32,7 +36,7 @@ function Home() {
           className="mb-3"
           name=""
           id=""
-          onChange={handleChange}
+          onChange={handleSearch}
         />
         <button>Search</button>
         <div className="row">

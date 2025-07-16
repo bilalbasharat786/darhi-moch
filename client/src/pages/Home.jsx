@@ -19,10 +19,20 @@ function Home() {
   }, []);
 
   const handleSearch = (e) => {
-   if(e.target.value){
+   if(e.target.value && e.target.value.length > 3) {
       const filteredProducts = products.filter((product) => 
         product.title.toLowerCase().includes(e.target.value.toLowerCase())
       );
+      setProducts(filteredProducts);
+    }else {
+      getProductsFromAPI();
+   }
+  };
+  const handleRating = (e) => {
+   if(e.target.value && e.target.value.length > 3) {
+      const filteredProducts = products.filter((product) => {
+        return product.rating.rate >= e.target.value && product.rating.rate <= 5;
+      });
       setProducts(filteredProducts);
     }else {
       getProductsFromAPI();
@@ -39,6 +49,8 @@ function Home() {
           onChange={handleSearch}
         />
         <button>Search</button>
+        <label htmlFor="">Filter by rating</label>
+        <input type="text" name="" id="" onChange={handleRating} />
         <div className="row">
           {products.map((product) => (
             <div className="col-md-3" key={product.id}>
